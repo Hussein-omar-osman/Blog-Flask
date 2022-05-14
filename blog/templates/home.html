@@ -4,9 +4,471 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.default.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/main.css') }}"
+    />
     <title>{{title}}</title>
   </head>
   <body>
-    <h1>Home Page</h1>
+    <!-- <button id="joke">Get joke</button>
+    <p id="p1">id</p>
+    <p id="p2" style="font-size: 40px">quote</p>
+    <p id="p3">author</p> -->
+    <header class="header">
+      <!-- Main Navbar-->
+      <nav class="navbar navbar-expand-lg">
+        <div class="search-area">
+          <div
+            class="search-area-inner d-flex align-items-center justify-content-center"
+          >
+            <div class="close-btn"><i class="icon-close"></i></div>
+            <div class="row d-flex justify-content-center">
+              <div class="col-md-8">
+                <form action="#">
+                  <div class="form-group">
+                    <input
+                      type="search"
+                      name="search"
+                      id="search"
+                      placeholder="What are you looking for?"
+                    />
+                    <button type="submit" class="submit">
+                      <i class="icon-search-1"></i>
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <!-- Navbar Brand -->
+          <div
+            class="navbar-header d-flex align-items-center justify-content-between"
+          >
+            <!-- Navbar Brand --><a href="index.html" class="navbar-brand"
+              >Bootstrap Blog</a
+            >
+            <!-- Toggle Button-->
+            <button
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarcollapse"
+              aria-controls="navbarcollapse"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+              class="navbar-toggler"
+            >
+              <span></span><span></span><span></span>
+            </button>
+          </div>
+          <!-- Navbar Menu -->
+          <div id="navbarcollapse" class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a href="index.html" class="nav-link active">Home</a>
+              </li>
+              <li class="nav-item">
+                <a href="blog.html" class="nav-link">Blog</a>
+              </li>
+              <li class="nav-item">
+                <a href="post.html" class="nav-link">Post</a>
+              </li>
+              <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="navbar-text">
+              <a href="#" class="search-btn"><i class="icon-search-1"></i></a>
+            </div>
+            <ul class="langs navbar-text">
+              <a href="#" class="active">EN</a
+              ><span> </span
+              ><a href="#">ES</a>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <!-- Hero Section-->
+    <section
+      style="
+        background: url(static/blog_images/first!.jpeg);
+        background-size: cover;
+        background-position: center center;
+      "
+      class="hero"
+    >
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-7">
+            <h1>Bootstrap 4 Blog - A free template by Bootstrap Temple</h1>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Intro Section-->
+    <section class="intro">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8">
+            <h2 class="h3">Some great intro here</h2>
+            <p class="text-big">
+              Place a nice <strong>introduction</strong> here
+              <strong>to catch reader's attention</strong>. Lorem ipsum dolor
+              sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+              veniam, quis nostrud nisi ut aliquip ex ea commodo consequat. Duis
+              aute irure dolor in reprehenderi.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Posts -->
+    <section class="featured-posts no-padding-top">
+      <div class="container">
+        <!-- Post-->
+        <div class="row d-flex align-items-stretch most-liked">
+          <div class="text col-lg-7">
+            <div class="text-inner d-flex align-items-center">
+              <div class="content">
+                <header class="post-header">
+                  <div class="category">
+                    <a href="#">Business</a><a href="#">Technology</a>
+                  </div>
+                  <a href="post.html">
+                    <h2 class="h4">
+                      Alberto Savoia Can Teach You About Interior
+                    </h2></a
+                  >
+                </header>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Ut enim ad minim veniam, quis nostrude consectetur adipisicing
+                  elit, sed do eiusmod tempor incididunt.
+                </p>
+                <footer class="post-footer d-flex align-items-center">
+                  <a
+                    href="#"
+                    class="author d-flex align-items-center flex-wrap"
+                  >
+                    <div class="avatar">
+                      <img src="img/avatar-1.jpg" alt="..." class="img-fluid" />
+                    </div>
+                    <div class="title"><span>John Doe</span></div></a
+                  >
+                  <div class="date">
+                    <i class="icon-clock"></i> 2 months ago
+                  </div>
+                  <div class="comments"><i class="icon-comment"></i>12</div>
+                </footer>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="image col-lg-5 widImage">
+            <img
+              src="{{ url_for('static', filename='blog_images/first!.jpeg') }}"
+              alt="..."
+            />
+          </div> -->
+          <div class="widImage">
+            <img
+              src="{{ url_for('static', filename='blog_images/first!.jpeg') }}"
+              alt="..."
+            />
+          </div>
+        </div>
+        <!-- Post        -->
+        <div class="row d-flex align-items-stretch most-liked">
+          <div class="widImage">
+            <img
+              src="{{ url_for('static', filename='blog_images/first!.jpeg') }}"
+              alt="..."
+            />
+          </div>
+          <div class="text col-lg-7">
+            <div class="text-inner d-flex align-items-center">
+              <div class="content">
+                <header class="post-header">
+                  <div class="category">
+                    <a href="#">Business</a><a href="#">Technology</a>
+                  </div>
+                  <a href="post.html">
+                    <h2 class="h4">
+                      Alberto Savoia Can Teach You About Interior
+                    </h2></a
+                  >
+                </header>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Ut enim ad minim veniam, quis nostrude consectetur adipisicing
+                  elit, sed do eiusmod tempor incididunt.
+                </p>
+                <footer class="post-footer d-flex align-items-center">
+                  <a
+                    href="#"
+                    class="author d-flex align-items-center flex-wrap"
+                  >
+                    <div class="avatar">
+                      <img src="img/avatar-2.jpg" alt="..." class="img-fluid" />
+                    </div>
+                    <div class="title"><span>John Doe</span></div></a
+                  >
+                  <div class="date">
+                    <i class="icon-clock"></i> 2 months ago
+                  </div>
+                  <div class="comments"><i class="icon-comment"></i>12</div>
+                </footer>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Post -->
+        <div class="row d-flex align-items-stretch most-liked">
+          <div class="text col-lg-7">
+            <div class="text-inner d-flex align-items-center">
+              <div class="content">
+                <header class="post-header">
+                  <div class="category">
+                    <a href="#">Business</a><a href="#">Technology</a>
+                  </div>
+                  <a href="post.html">
+                    <h2 class="h4">
+                      Alberto Savoia Can Teach You About Interior
+                    </h2></a
+                  >
+                </header>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Ut enim ad minim veniam, quis nostrude consectetur adipisicing
+                  elit, sed do eiusmod tempor incididunt.
+                </p>
+                <footer class="post-footer d-flex align-items-center">
+                  <a
+                    href="#"
+                    class="author d-flex align-items-center flex-wrap"
+                  >
+                    <div class="avatar">
+                      <img src="img/avatar-3.jpg" alt="..." class="img-fluid" />
+                    </div>
+                    <div class="title"><span>John Doe</span></div></a
+                  >
+                  <div class="date">
+                    <i class="icon-clock"></i> 2 months ago
+                  </div>
+                  <div class="comments"><i class="icon-comment"></i>12</div>
+                </footer>
+              </div>
+            </div>
+          </div>
+          <div class="widImage">
+            <img
+              src="{{ url_for('static', filename='blog_images/first!.jpeg') }}"
+              alt="..."
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Latest Posts -->
+    <section class="latest-posts">
+      <div class="container">
+        <header>
+          <h2>Latest from the blog</h2>
+          <p class="text-big">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+          </p>
+        </header>
+        <div class="row">
+          <div class="post col-md-4">
+            <div class="post-thumbnail">
+              <a href="post.html"
+                ><img
+                  src="{{ url_for('static', filename='blog_images/first!.jpeg') }}"
+                  alt="..."
+                  class="img-fluid"
+              /></a>
+            </div>
+            <div class="post-details">
+              <div class="post-meta d-flex justify-content-between">
+                <div class="date">20 May | 2016</div>
+                <div class="category"><a href="#">Business</a></div>
+              </div>
+              <a href="post.html">
+                <h3 class="h4">Ways to remember your important ideas</h3></a
+              >
+              <p class="text-muted">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                eiusmod tempor incididunt ut labore.
+              </p>
+              <footer class="post-footer d-flex align-items-center">
+                <a href="#" class="author d-flex align-items-center flex-wrap">
+                  <div class="avatar">
+                    <img src="img/avatar-1.jpg" alt="..." class="img-fluid" />
+                  </div>
+                  <div class="title"><span>John Doe</span></div></a
+                >
+                <div class="date"><i class="icon-clock"></i> 2 months ago</div>
+                <div class="comments"><i class="icon-comment"></i>12</div>
+              </footer>
+            </div>
+          </div>
+          <div class="post col-md-4">
+            <div class="post-thumbnail">
+              <a href="post.html"
+                ><img
+                  src="{{ url_for('static', filename='blog_images/image1.avif') }}"
+                  alt="..."
+                  class="img-fluid"
+              /></a>
+            </div>
+            <div class="post-details">
+              <div class="post-meta d-flex justify-content-between">
+                <div class="date">20 May | 2016</div>
+                <div class="category"><a href="#">Technology</a></div>
+              </div>
+              <a href="post.html">
+                <h3 class="h4">
+                  Diversity in Engineering: Effect on Questions
+                </h3></a
+              >
+              <p class="text-muted">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                eiusmod tempor incididunt ut labore.
+              </p>
+            </div>
+          </div>
+          <div class="post col-md-4">
+            <div class="post-thumbnail">
+              <a href="post.html"
+                ><img
+                  src="{{ url_for('static', filename='blog_images/image1.avif') }}"
+                  alt="..."
+                  class="img-fluid"
+              /></a>
+            </div>
+            <div class="post-details">
+              <div class="post-meta d-flex justify-content-between">
+                <div class="date">20 May | 2016</div>
+                <div class="category"><a href="#">Technology</a></div>
+              </div>
+              <a href="post.html">
+                <h3 class="h4">
+                  Diversity in Engineering: Effect on Questions
+                </h3></a
+              >
+              <p class="text-muted">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                eiusmod tempor incididunt ut labore.
+              </p>
+            </div>
+          </div>
+          <div class="post col-md-4">
+            <div class="post-thumbnail">
+              <a href="post.html"
+                ><img
+                  src="{{ url_for('static', filename='blog_images/image1.avif') }}"
+                  alt="..."
+                  class="img-fluid"
+              /></a>
+            </div>
+            <div class="post-details">
+              <div class="post-meta d-flex justify-content-between">
+                <div class="date">20 May | 2016</div>
+                <div class="category"><a href="#">Technology</a></div>
+              </div>
+              <a href="post.html">
+                <h3 class="h4">
+                  Diversity in Engineering: Effect on Questions
+                </h3></a
+              >
+              <p class="text-muted">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                eiusmod tempor incididunt ut labore.
+              </p>
+            </div>
+          </div>
+          <div class="post col-md-4">
+            <div class="post-thumbnail">
+              <a href="post.html"
+                ><img
+                  src="{{ url_for('static', filename='blog_images/image1.avif') }}"
+                  alt="..."
+                  class="img-fluid"
+              /></a>
+            </div>
+            <div class="post-details">
+              <div class="post-meta d-flex justify-content-between">
+                <div class="date">20 May | 2016</div>
+                <div class="category"><a href="#">Technology</a></div>
+              </div>
+              <a href="post.html">
+                <h3 class="h4">
+                  Diversity in Engineering: Effect on Questions
+                </h3></a
+              >
+              <p class="text-muted">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                eiusmod tempor incididunt ut labore.
+              </p>
+            </div>
+          </div>
+          <div class="post col-md-4">
+            <div class="post-thumbnail">
+              <a href="post.html"
+                ><img src="img/blog-3.jpg" alt="..." class="img-fluid"
+              /></a>
+            </div>
+            <div class="post-details">
+              <div class="post-meta d-flex justify-content-between">
+                <div class="date">20 May | 2016</div>
+                <div class="category"><a href="#">Financial</a></div>
+              </div>
+              <a href="post.html">
+                <h3 class="h4">
+                  Alberto Savoia Can Teach You About Interior
+                </h3></a
+              >
+              <p class="text-muted">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                eiusmod tempor incididunt ut labore.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="blank-space">.</div>
+
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+      integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+      integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
