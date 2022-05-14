@@ -12,7 +12,7 @@
     />
     <link
       rel="stylesheet"
-      href="{{ url_for('static', filename='css/style.default.css') }}"
+      href="{{ url_for('static', filename='css/style.css') }}"
     />
     <link
       rel="stylesheet"
@@ -28,30 +28,6 @@
     <header class="header">
       <!-- Main Navbar-->
       <nav class="navbar navbar-expand-lg">
-        <div class="search-area">
-          <div
-            class="search-area-inner d-flex align-items-center justify-content-center"
-          >
-            <div class="close-btn"><i class="icon-close"></i></div>
-            <div class="row d-flex justify-content-center">
-              <div class="col-md-8">
-                <form action="#">
-                  <div class="form-group">
-                    <input
-                      type="search"
-                      name="search"
-                      id="search"
-                      placeholder="What are you looking for?"
-                    />
-                    <button type="submit" class="submit">
-                      <i class="icon-search-1"></i>
-                    </button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
         <div class="container">
           <!-- Navbar Brand -->
           <div
@@ -61,17 +37,6 @@
               >Bootstrap Blog</a
             >
             <!-- Toggle Button-->
-            <button
-              type="button"
-              data-toggle="collapse"
-              data-target="#navbarcollapse"
-              aria-controls="navbarcollapse"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-              class="navbar-toggler"
-            >
-              <span></span><span></span><span></span>
-            </button>
           </div>
           <!-- Navbar Menu -->
           <div id="navbarcollapse" class="collapse navbar-collapse">
@@ -87,9 +52,7 @@
               </li>
               <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
             </ul>
-            <div class="navbar-text">
-              <a href="#" class="search-btn"><i class="icon-search-1"></i></a>
-            </div>
+
             <ul class="langs navbar-text">
               <a href="#" class="active">EN</a
               ><span> </span
@@ -121,15 +84,17 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-8">
-            <h2 class="h3">Some great intro here</h2>
-            <p class="text-big">
-              Place a nice <strong>introduction</strong> here
-              <strong>to catch reader's attention</strong>. Lorem ipsum dolor
-              sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-              veniam, quis nostrud nisi ut aliquip ex ea commodo consequat. Duis
-              aute irure dolor in reprehenderi.
-            </p>
+            <h2 class="h3">Quote of The Day</h2>
+            <p class="text-big" id="quote">Q</p>
+            <span class="text-muted" id="author">-F</span>
+            <div style="margin-top: 10px; text-decoration: none">
+              <!-- <a href="" class="btn btn-outline-secondary" id="joke"
+                >Get Another</a
+              > -->
+              <button class="btn btn-outline-secondary" id="joke">
+                Get Another
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -137,6 +102,9 @@
     <!-- Posts -->
     <section class="featured-posts no-padding-top">
       <div class="container">
+        <header>
+          <h2>Most Liked Blog Posts</h2>
+        </header>
         <!-- Post-->
         <div class="row d-flex align-items-stretch most-liked">
           <div class="text col-lg-7">
