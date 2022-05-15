@@ -32,3 +32,14 @@
   max-width: 700px;
   margin: 0 auto;
 }
+
+.blog-width {
+  width: 90%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.blog-post {
+  margin: 30px 50px;
+}

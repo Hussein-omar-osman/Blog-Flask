@@ -5,7 +5,7 @@ from blog.forms import LoginForm, RegistrationForm, UpdateProfileForm, BlogForm
 from blog.models import User, Post, Comments
 from flask_login import login_user, current_user, logout_user, login_required
 import requests
-from blog.utility_func import save_profile_pic
+from blog.utility_func import save_profile_pic, save_blog_pic
 
 
 @app.route('/')
@@ -56,7 +56,9 @@ def logout():
 @login_required
 def account():
   profile_image = url_for('static', filename='profile_pics/' + current_user.profile_image)
-  return render_template('account.html', title='Account', profile_image=profile_image)
+  # posts = current_user.posts
+  posts = Post.query.filter_by(user_id=current_user.id).order_by(Post.date_posted.desc()).all()
+  return render_template('account.html', title='Account', profile_image=profile_image, posts=posts)
 
 @app.route("/update_profile", methods=['GET', 'POST'])
 @login_required
@@ -65,6 +67,7 @@ def update_profile():
   if form.validate_on_submit():
     print(form.username.data, form.email.data, form.bio.data)
     if form.profile_pic.data:
+      print(form.profile_pic.data)
       p_name = save_profile_pic(form.profile_pic.data)
       current_user.profile_image = p_name
     current_user.username = form.username.data
@@ -81,15 +84,22 @@ def update_profile():
   return render_template('update_profile.html', title='Update Profile', form=form)
 
 
+@app.route("/blogs", methods=['GET', 'POST'])
+def blogs():
+  posts = Post.query.order_by(Post.date_posted.desc()).all() 
+  return render_template('blogs.html', title='Blogs', posts=posts)
+
+
 @app.route("/create_pitch", methods=['GET', 'POST'])
 @login_required
 def create_blog():
   form = BlogForm()
   if form.validate_on_submit():
+    print(form.title.data, form.content.data)
     post = Post(title=form.title.data, content=form.content.data, author=current_user)
     db.session.add(post)
     db.session.commit()
     flash('You have posted', 'secondary')
-    return redirect(url_for('home'))
+    return redirect(url_for('blogs'))
     
   return render_template('create_blog.html', title='Create Blog', form=form)

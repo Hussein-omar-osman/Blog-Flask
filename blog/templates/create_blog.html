@@ -33,17 +33,6 @@
         endif %}
       </div>
       <br />
-      <div class="form-group mt-2 mb-2">
-         {{ form.blog_pic.label() }}
-         <br>
-         {{ form.blog_pic(class="form-control-file") }}
-         <br>
-         {% if form.blog_pic.errors %}
-             {% for error in form.blog_pic.errors %}
-                 <span class="text-danger">{{ error }}</span></br>
-             {% endfor %}
-         {% endif %}
-       </div>
     </fieldset>
     <div class="form-group">
       {{ form.submit(class="btn btn-outline-primary") }}
