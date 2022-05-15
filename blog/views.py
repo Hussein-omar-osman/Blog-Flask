@@ -1,7 +1,7 @@
 from turtle import title
 from flask import render_template, url_for, flash, redirect, request
 from blog import app, db, bc
-from blog.forms import LoginForm, RegistrationForm, UpdateProfileForm, BlogForm
+from blog.forms import LoginForm, RegistrationForm, UpdateProfileForm, BlogForm, CommentForm
 from blog.models import User, Post, Comments
 from flask_login import login_user, current_user, logout_user, login_required
 import requests
@@ -56,7 +56,6 @@ def logout():
 @login_required
 def account():
   profile_image = url_for('static', filename='profile_pics/' + current_user.profile_image)
-  # posts = current_user.posts
   posts = Post.query.filter_by(user_id=current_user.id).order_by(Post.date_posted.desc()).all()
   return render_template('account.html', title='Account', profile_image=profile_image, posts=posts)
 
@@ -95,11 +94,31 @@ def blogs():
 def create_blog():
   form = BlogForm()
   if form.validate_on_submit():
-    print(form.title.data, form.content.data)
-    post = Post(title=form.title.data, content=form.content.data, author=current_user)
+    if form.blog_pic.data:
+      print(form.blog_pic.data)
+      p_name = save_blog_pic(form.blog_pic.data)
+      post = Post(title=form.title.data, content=form.content.data, author=current_user, blog_image=p_name)
+    else:
+      post = Post(title=form.title.data, content=form.content.data, author=current_user)
     db.session.add(post)
     db.session.commit()
+      
     flash('You have posted', 'secondary')
     return redirect(url_for('blogs'))
     
   return render_template('create_blog.html', title='Create Blog', form=form)
+
+@app.route("/post/<post_id>" , methods=['GET', 'POST'])
+@login_required
+def post(post_id):
+    post = Post.query.get_or_404(post_id)
+    comments = Comments.query.order_by(Comments.date_posted.desc()).filter_by(post_id=post_id)
+    form = CommentForm()
+    total_comments = len(post.comments)
+    if form.validate_on_submit():
+      comment = Comments(content=form.content.data, user_comments=current_user, post_id=post_id)
+      db.session.add(comment)
+      db.session.commit()
+      flash('You have commented', 'secondary')
+      return redirect(url_for('post', post_id=post_id))
+    return render_template('post.html', post=post, form=form, comments=comments, total_comments=total_comments)

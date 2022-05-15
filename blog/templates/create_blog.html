@@ -1,6 +1,6 @@
 {% extends "base_layout.html" %} {% block content %}
 <div class="content-section login-page shadow p-4 mb-5 bg-body rounded">
-  <form method="POST" action="">
+  <form method="POST" action="" enctype="multipart/form-data">
     {{ form.hidden_tag() }}
     <fieldset class="form-group">
       <legend class="border-bottom mb-4 text-center text-bold text-weight-bold">
@@ -33,6 +33,17 @@
         endif %}
       </div>
       <br />
+      <div class="form-group mt-2 mb-2">
+         {{ form.blog_pic.label() }}
+         <br>
+         {{ form.blog_pic(class="form-control-file") }}
+         <br>
+         {% if form.blog_pic.errors %}
+             {% for error in form.blog_pic.errors %}
+                 <span class="text-danger">{{ error }}</span></br>
+             {% endfor %}
+         {% endif %}
+       </div>
     </fieldset>
     <div class="form-group">
       {{ form.submit(class="btn btn-outline-primary") }}

@@ -1,0 +1,118 @@
+{% extends "base_layout.html" %} {% block content %}
+<div class="container">
+  <div class="row">
+    <!-- Latest Posts -->
+    <main class="post blog-post col-lg-8">
+      <div class="container">
+        <div class="post-single">
+          <div class="post-thumbnail">
+            <img
+              src="{{ url_for('static', filename='blog_images/' + post.blog_image) }}"
+              alt="..."
+              class="img-fluid"
+              style="width: 65%; height: 65%; border-radius: 20px"
+            />
+          </div>
+          <div class="post-details">
+            <div class="post-meta d-flex justify-content-between">
+              <div class="category"></div>
+            </div>
+            <h1>{{post.title}}</h1>
+            <div
+              class="post-footer d-flex align-items-center flex-column flex-sm-row"
+            >
+              <a href="#" class="author d-flex align-items-center flex-wrap">
+                <div class="avatar">
+                  <img
+                    src="{{ url_for('static', filename='profile_pics/' + post.author.profile_image) }}"
+                    alt="..."
+                    class="img-fluid"
+                  />
+                </div>
+                <div class="title">
+                  <span>{{post.author.username}}</span>
+                </div></a
+              >
+              <div class="d-flex align-items-center flex-wrap">
+                <div class="date">
+                  <i class="icon-clock"></i>
+                  {{post.date_posted.strftime('%d %b, %Y')}}
+                </div>
+
+                <div class="comments meta-last">
+                  <i class="icon-comment"></i>
+                </div>
+              </div>
+            </div>
+            <div class="post-body">
+              <p class="lead">{{post.content}}</p>
+            </div>
+
+            <div class="post-comments">
+              <header>
+                <h3 class="h6">
+                  Latest Comments<span class="no-of-comments"
+                    >({{total_comments}})</span
+                  >
+                </h3>
+              </header>
+              {% for comment in comments %}
+              <div class="comment">
+                <div class="comment-header d-flex justify-content-between">
+                  <div class="user d-flex align-items-center">
+                    <div class="image">
+                      <img
+                        src="{{ url_for('static', filename='profile_pics/' + comment.user_comments.profile_image) }}"
+                        alt="..."
+                        class="img-fluid rounded-circle"
+                      />
+                    </div>
+                    <div class="title">
+                      <strong>{{comment.user_comments.username}}</strong
+                      ><span class="date"
+                        >{{comment.date_posted.strftime('%d %b, %Y')}}</span
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="comment-body">
+                  <p>{{ comment.content }}</p>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+            <!-- Add Comment -->
+            <form method="POST" action="">
+              {{ form.hidden_tag() }}
+              <fieldset class="form-group mt-1 mb-2">
+                <legend class="border-bottom mb-4 text-center">
+                  Leave a Comment
+                </legend>
+                <div class="form-group mt-2 mb-2">
+                  {{ form.content.label(class="form-control-label") }} {% if
+                  form.content.errors %} {{ form.content(class="form-control
+                  form-control-lg is-invalid") }}
+                  <div class="invalid-feedback">
+                    {% for error in form.content.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                  </div>
+                  {% else %} {{ form.content(class="form-control
+                  form-control-lg") }} {% endif %}
+                </div>
+              </fieldset>
+              <div class="form-group mt-2 mb-2">
+                {{ form.submit(class="btn btn-outline-primary") }}
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+{% endblock content %}
+
+<!-- <div class="form-group col-md-12">
+  <button type="submit" class="btn btn-secondary">Submit Comment</button>
+</div> -->

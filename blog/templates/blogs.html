@@ -9,19 +9,22 @@
       {% for post in posts %}
       <div class="post col-md-4">
         <div class="post-thumbnail">
-          <a href="#"
+          <a href="{{url_for('post', post_id=post.id)}}"
             ><img
               src="{{ url_for('static', filename='blog_images/' + post.blog_image) }}"
               alt="..."
               class="img-fluid"
+              style="border-radius: 20px"
           /></a>
         </div>
         <div class="post-details">
           <div class="post-meta d-flex justify-content-between">
             <div class="date">{{post.date_posted.strftime('%d-%m-%Y')}}</div>
           </div>
-          <a href="post.html"> <h3 class="h4">{{post.title}}</h3></a>
-          <p class="text-muted">{{post.content}}</p>
+          <a href="{{url_for('post', post_id=post.id)}}">
+            <h3 class="h4 blog-title">{{post.title}}</h3></a
+          >
+          <p class="text-muted blog-content">{{post.content}}</p>
           <footer class="post-footer d-flex align-items-center">
             <a href="#" class="author d-flex align-items-center flex-wrap">
               <div class="avatar">
@@ -34,8 +37,8 @@
               <div class="title"><span>{{post.author.username}}</span></div></a
             >
             <div class="date">
-              <i class="icon-clock"></i
-              >{{post.author.date_joined.strftime('%d-%m-%Y')}}
+              <i class="icon-clock"></i>{{post.author.date_joined.strftime('%d
+              %b, %Y')}}
             </div>
             <div class="comments"><i class="icon-comment"></i>0</div>
           </footer>
@@ -45,5 +48,28 @@
     </div>
   </div>
 </section>
+<script>
+  const newsTitle = document.querySelectorAll('.blog-title');
+  const newsDes = document.querySelectorAll('.blog-content');
 
+  for (nt of newsTitle) {
+    titleContent = nt.textContent;
+
+    len = nt.textContent.length;
+    if (len > 43) {
+      content_dis = titleContent.slice(0, 43);
+      nt.innerText = `${content_dis}...`;
+    }
+  }
+
+  for (nt of newsDes) {
+    DesContent = nt.textContent;
+    len = DesContent.length;
+    if (len > 180) {
+      content_dis = DesContent.slice(0, 180);
+      nt.innerText = `${content_dis}...`;
+      console.log(DesContent);
+    }
+  }
+</script>
 {% endblock content %}

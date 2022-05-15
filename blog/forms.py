@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
-from wtforms import StringField, PasswordField, SubmitField, TextAreaField, SelectField, BooleanField
+from wtforms import StringField, PasswordField, SubmitField, TextAreaField, BooleanField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from blog.models import User
 from flask_login import current_user
@@ -62,4 +62,12 @@ class UpdateProfileForm(FlaskForm):
 class BlogForm(FlaskForm):      
     title = StringField('Title', validators=[DataRequired()])
     content = TextAreaField('Content', validators=[DataRequired()])
+    blog_pic = FileField('Picture', validators=[FileAllowed(['png', 'jpg', 'jpeg'])])
     submit = SubmitField('Post')
+    
+    
+class CommentForm(FlaskForm):
+    content = StringField('Add a comment', validators=[DataRequired()])
+    like = BooleanField('Like')
+    dislike = BooleanField('Dislike')
+    submit = SubmitField('Comment')

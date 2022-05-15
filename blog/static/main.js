@@ -1,9 +1,17 @@
 const btnJoke = document.getElementById('joke');
+const btnBlogs = document.getElementById('blogs');
 const p2 = document.getElementById('quote');
 const p3 = document.getElementById('author');
+const newsTitle = document.querySelectorAll('.blog-title');
+const newsDes = document.querySelectorAll('.blog-content');
 
 btnJoke.addEventListener('click', () => {
   getData();
+});
+
+btnBlogs.addEventListener('click', () => {
+  alert('clicked');
+  console.log('cliked');
 });
 
 async function getData() {
@@ -19,9 +27,25 @@ async function getData() {
   }
 }
 
-let obj = {
-  name: 'hussein',
-  age: 22,
-};
+for (nt of newsTitle) {
+  titleContent = nt.textContent;
 
-console.log(obj.name);
+  len = nt.textContent.length;
+  if (len > 8) {
+    content_dis = titleContent.slice(0, 8);
+    nt.innerText = `${content_dis}...`;
+  }
+}
+
+for (nt of newsDes) {
+  DesContent = nt.textContent;
+  console.log(DesContent);
+  len = DesContent.length;
+  console.log(len);
+  if (len > 180) {
+    content_dis = DesContent.slice(0, 180);
+    nt.innerText = `${content_dis}...`;
+    console.log(DesContent);
+  }
+  console.log(DesContent);
+}
