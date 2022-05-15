@@ -3,11 +3,13 @@ from blog import app, db, bc
 from blog.forms import LoginForm, RegistrationForm, UpdateProfileForm
 from blog.models import User, Post, Comments
 from flask_login import login_user, current_user, logout_user, login_required
+import requests
 
 
 @app.route('/')
 def home():
- return render_template('home.html', title='Home')
+ res = requests.get(f'http://quotes.stormconsultancy.co.uk/random.json').json()
+ return render_template('home.html', title='Home', res=res)
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
