@@ -46,3 +46,10 @@ def logout():
     logout_user()
     flash('You have successfully logged out', 'secondary')
     return redirect(url_for('home'))
+  
+  
+@app.route("/account", methods=['GET', 'POST'])
+@login_required
+def account():
+  profile_image = url_for('static', filename='profile_pics/' + current_user.profile_image)
+  return render_template('account.html', title='Account', profile_image=profile_image)
