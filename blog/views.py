@@ -1,6 +1,6 @@
 from flask import render_template, url_for, flash, redirect, request
 from blog import app, db, bc
-from blog.forms import LoginForm, RegistrationForm
+from blog.forms import LoginForm, RegistrationForm, UpdateProfileForm
 from blog.models import User, Post, Comments
 from flask_login import login_user, current_user, logout_user, login_required
 
@@ -53,3 +53,22 @@ def logout():
 def account():
   profile_image = url_for('static', filename='profile_pics/' + current_user.profile_image)
   return render_template('account.html', title='Account', profile_image=profile_image)
+
+@app.route("/update_profile", methods=['GET', 'POST'])
+@login_required
+def update_profile():
+  form = UpdateProfileForm()
+  if form.validate_on_submit():
+    print(form.username.data, form.email.data, form.bio.data)
+    current_user.username = form.username.data
+    current_user.email = form.email.data
+    current_user.description = form.bio.data
+    db.session.commit()
+    flash('Your account has been updated', 'secondary')
+    return redirect(url_for('account'))
+  elif request.method == 'GET':
+    form.username.data = current_user.username
+    form.email.data = current_user.email
+    form.bio.data = current_user.description
+    
+  return render_template('update_profile.html', title='Update Profile', form=form)
