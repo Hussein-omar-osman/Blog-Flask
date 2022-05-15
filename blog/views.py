@@ -1,6 +1,7 @@
+from turtle import title
 from flask import render_template, url_for, flash, redirect, request
 from blog import app, db, bc
-from blog.forms import LoginForm, RegistrationForm, UpdateProfileForm
+from blog.forms import LoginForm, RegistrationForm, UpdateProfileForm, BlogForm
 from blog.models import User, Post, Comments
 from flask_login import login_user, current_user, logout_user, login_required
 import requests
@@ -78,3 +79,17 @@ def update_profile():
     form.bio.data = current_user.description
     
   return render_template('update_profile.html', title='Update Profile', form=form)
+
+
+@app.route("/create_pitch", methods=['GET', 'POST'])
+@login_required
+def create_blog():
+  form = BlogForm()
+  if form.validate_on_submit():
+    post = Post(title=form.title.data, content=form.content.data, author=current_user)
+    db.session.add(post)
+    db.session.commit()
+    flash('You have posted', 'secondary')
+    return redirect(url_for('home'))
+    
+  return render_template('create_blog.html', title='Create Blog', form=form)

@@ -25,7 +25,7 @@ class Post(db.Model):
     title = db.Column(db.String(100), nullable=False)
     likes = db.Column(db.Integer, nullable=False, default=0)
     dislikes = db.Column(db.Integer, nullable=False, default=0)
-    blog_image = db.Column(db.String(20), nullable=False, default='default_blog.jpg')
+    blog_image = db.Column(db.String, nullable=False, default='default_blog.jpg')
     date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     content = db.Column(db.Text, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)

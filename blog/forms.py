@@ -57,3 +57,10 @@ class UpdateProfileForm(FlaskForm):
             user = User.query.filter_by(email=email.data).first()
             if user:
                 raise ValidationError('Email is taken')
+            
+            
+class BlogForm(FlaskForm):      
+    title = StringField('Title', validators=[DataRequired()])
+    content = TextAreaField('Content', validators=[DataRequired()])
+    blog_pic = FileField('Picture', validators=[FileAllowed(['png', 'jpg', 'jpeg'])])
+    submit = SubmitField('Post')
