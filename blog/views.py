@@ -4,6 +4,7 @@ from blog.forms import LoginForm, RegistrationForm, UpdateProfileForm
 from blog.models import User, Post, Comments
 from flask_login import login_user, current_user, logout_user, login_required
 import requests
+from blog.utility_func import save_profile_pic
 
 
 @app.route('/')
@@ -62,6 +63,9 @@ def update_profile():
   form = UpdateProfileForm()
   if form.validate_on_submit():
     print(form.username.data, form.email.data, form.bio.data)
+    if form.profile_pic.data:
+      p_name = save_profile_pic(form.profile_pic.data)
+      current_user.profile_image = p_name
     current_user.username = form.username.data
     current_user.email = form.email.data
     current_user.description = form.bio.data
