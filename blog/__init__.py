@@ -14,7 +14,7 @@ if env == 'dev':
  app.debug = True
 else:
  app.debug = False
- app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres+psycopg2://bxvekjlojagsuc:000b96f0d93b4757f252946e13be05a5bc33f1834d7a1424cdcc44630ffaa294@ec2-52-86-115-245.compute-1.amazonaws.com:5432/d4kv5jhtnd6orl'
+ app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://bxvekjlojagsuc:000b96f0d93b4757f252946e13be05a5bc33f1834d7a1424cdcc44630ffaa294@ec2-52-86-115-245.compute-1.amazonaws.com:5432/d4kv5jhtnd6orl'
 
 db = SQLAlchemy(app)
 bc = Bcrypt(app)
