@@ -1,5 +1,3 @@
-from os import abort
-from turtle import title
 from flask import render_template, url_for, flash, redirect, request, abort
 from blog import app, db, bc
 from blog.forms import LoginForm, RegistrationForm, UpdateProfileForm, BlogForm, CommentForm
