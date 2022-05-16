@@ -1,5 +1,6 @@
+from os import abort
 from turtle import title
-from flask import render_template, url_for, flash, redirect, request
+from flask import render_template, url_for, flash, redirect, request, abort
 from blog import app, db, bc
 from blog.forms import LoginForm, RegistrationForm, UpdateProfileForm, BlogForm, CommentForm
 from blog.models import User, Post, Comments
@@ -11,7 +12,22 @@ from blog.utility_func import save_profile_pic, save_blog_pic
 @app.route('/')
 def home():
  res = requests.get(f'http://quotes.stormconsultancy.co.uk/random.json').json()
- return render_template('home.html', title='Home', res=res)
+ most_like = Post.query.order_by(Post.likes.desc()).all()
+ latest = Post.query.order_by(Post.date_posted.desc()).all()
+ latest_post = []
+ liked_post = []
+ for i in range(0, len(most_like)):
+   if i == 3:
+     break
+   else:
+     liked_post.append(most_like[i])
+     
+ for i in range(0, len(latest)):
+   if i == 6:
+     break
+   else:
+     latest_post.append(latest[i])
+ return render_template('home.html', title='Home', res=res, liked_post=liked_post, latest_post=latest_post)
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
@@ -106,7 +122,7 @@ def create_blog():
     flash('You have posted', 'secondary')
     return redirect(url_for('blogs'))
     
-  return render_template('create_blog.html', title='Create Blog', form=form)
+  return render_template('create_blog.html', title='Create Blog', form=form, leg='Create A Blog Post')
 
 @app.route("/post/<post_id>" , methods=['GET', 'POST'])
 @login_required
@@ -121,4 +137,28 @@ def post(post_id):
       db.session.commit()
       flash('You have commented', 'secondary')
       return redirect(url_for('post', post_id=post_id))
-    return render_template('post.html', post=post, form=form, comments=comments, total_comments=total_comments)
+    return render_template('post.html', post=post, form=form, comments=comments, total_comments=total_comments, title='Post')
+  
+  
+
+@app.route("/post/<post_id>/update" , methods=['GET', 'POST'])
+@login_required
+def update_post(post_id):
+  post = Post.query.get_or_404(post_id)
+  if post.author != current_user:
+    abort(403)
+
+  form = BlogForm()
+  if form.validate_on_submit():
+    post.title = form.title.data
+    post.content = form.content.data
+    if form.blog_pic.data:
+      p_name = save_blog_pic(form.blog_pic.data)
+      post.blog_image = p_name
+    db.session.commit()
+    flash('Your Blog Post Has Been Updated', 'secondary')
+    return redirect(url_for('post', post_id=post.id))
+  elif request.method == "GET":
+    form.title.data = post.title
+    form.content.data = post.content
+  return render_template('create_blog.html', title='Update Blog', form=form, leg='Update Blog Post')

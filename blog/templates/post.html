@@ -42,6 +42,15 @@
                 <div class="comments meta-last">
                   <i class="icon-comment"></i>
                 </div>
+                {% if post.author == current_user %}
+                <div>
+                  <a
+                    href="{{url_for('update_post', post_id = post.id)}}"
+                    class="btn btn-outline-secondary"
+                    >Update</a
+                  >
+                </div>
+                {% endif %}
               </div>
             </div>
             <div class="post-body">
@@ -111,8 +120,5 @@
     </main>
   </div>
 </div>
-{% endblock content %}
 
-<!-- <div class="form-group col-md-12">
-  <button type="submit" class="btn btn-secondary">Submit Comment</button>
-</div> -->
+{% endblock content %}

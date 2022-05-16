@@ -25,7 +25,7 @@ def save_blog_pic(form_pic):
     pic_name = random_hex + f_ext
     pic_path = os.path.join(app.root_path, 'static/blog_images', pic_name)
     
-    desired_img_size = (500, 500)
+    desired_img_size = (700, 700)
     i = Image.open(form_pic)
     i.thumbnail(desired_img_size)
     i.save(pic_path)

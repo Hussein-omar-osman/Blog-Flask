@@ -50,52 +50,45 @@
         <div class="text-inner d-flex align-items-center">
           <div class="content">
             <header class="post-header">
-              <div class="category">
-                <a href="#">Business</a><a href="#">Technology</a>
-              </div>
+              <div class="category"></div>
               <a href="post.html">
-                <h2 class="h4">
-                  Alberto Savoia Can Teach You About Interior
-                </h2></a
+                <h2 class="h4">{{liked_post[0].title}}</h2></a
               >
             </header>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrude consectetur adipisicing elit,
-              sed do eiusmod tempor incididunt.
-            </p>
+            <p>{{liked_post[0].content}}</p>
             <footer class="post-footer d-flex align-items-center">
               <a href="#" class="author d-flex align-items-center flex-wrap">
                 <div class="avatar">
-                  <img src="img/avatar-1.jpg" alt="..." class="img-fluid" />
+                  <img
+                    src="{{ url_for('static', filename='profile_pics/' + liked_post[0].author.profile_image) }}"
+                    alt="..."
+                    class="img-fluid"
+                  />
                 </div>
-                <div class="title"><span>John Doe</span></div></a
+                <div class="title">
+                  <span>{{liked_post[0].author.username}}</span>
+                </div></a
               >
-              <div class="date"><i class="icon-clock"></i> 2 months ago</div>
-              <div class="comments"><i class="icon-comment"></i>12</div>
+              <div class="date">
+                <i class="icon-clock"></i>
+                {{liked_post[0].author.date_joined.strftime('%d %b, %Y')}}
+              </div>
             </footer>
           </div>
         </div>
       </div>
-      <!-- <div class="image col-lg-5 widImage">
-            <img
-              src="{{ url_for('static', filename='blog_images/first!.jpeg') }}"
-              alt="..."
-            />
-          </div> -->
       <div class="widImage">
         <img
-          src="{{ url_for('static', filename='blog_images/first!.jpeg') }}"
+          src="{{ url_for('static', filename='blog_images/' + liked_post[0].blog_image) }}"
           alt="..."
         />
       </div>
     </div>
-    <!-- Post        -->
+    <!-- Post -->
     <div class="row d-flex align-items-stretch most-liked">
       <div class="widImage">
         <img
-          src="{{ url_for('static', filename='blog_images/first!.jpeg') }}"
+          src="{{ url_for('static', filename='blog_images/' + liked_post[1].blog_image) }}"
           alt="..."
         />
       </div>
@@ -103,30 +96,29 @@
         <div class="text-inner d-flex align-items-center">
           <div class="content">
             <header class="post-header">
-              <div class="category">
-                <a href="#">Business</a><a href="#">Technology</a>
-              </div>
+              <div class="category"></div>
               <a href="post.html">
-                <h2 class="h4">
-                  Alberto Savoia Can Teach You About Interior
-                </h2></a
+                <h2 class="h4">{{liked_post[1].title}}</h2></a
               >
             </header>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrude consectetur adipisicing elit,
-              sed do eiusmod tempor incididunt.
-            </p>
+            <p>{{liked_post[1].content}}</p>
             <footer class="post-footer d-flex align-items-center">
               <a href="#" class="author d-flex align-items-center flex-wrap">
                 <div class="avatar">
-                  <img src="img/avatar-2.jpg" alt="..." class="img-fluid" />
+                  <img
+                    src="{{ url_for('static', filename='profile_pics/' + liked_post[1].author.profile_image) }}"
+                    alt="..."
+                    class="img-fluid"
+                  />
                 </div>
-                <div class="title"><span>John Doe</span></div></a
+                <div class="title">
+                  <span>{{liked_post[1].author.username}}</span>
+                </div></a
               >
-              <div class="date"><i class="icon-clock"></i> 2 months ago</div>
-              <div class="comments"><i class="icon-comment"></i>12</div>
+              <div class="date">
+                <i class="icon-clock"></i
+                >{{liked_post[1].author.date_joined.strftime('%d %b, %Y')}}
+              </div>
             </footer>
           </div>
         </div>
@@ -138,37 +130,36 @@
         <div class="text-inner d-flex align-items-center">
           <div class="content">
             <header class="post-header">
-              <div class="category">
-                <a href="#">Business</a><a href="#">Technology</a>
-              </div>
+              <div class="category"></div>
               <a href="post.html">
-                <h2 class="h4">
-                  Alberto Savoia Can Teach You About Interior
-                </h2></a
+                <h2 class="h4">{{liked_post[2].title}}</h2></a
               >
             </header>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrude consectetur adipisicing elit,
-              sed do eiusmod tempor incididunt.
-            </p>
+            <p>{{liked_post[2].content}}</p>
             <footer class="post-footer d-flex align-items-center">
               <a href="#" class="author d-flex align-items-center flex-wrap">
                 <div class="avatar">
-                  <img src="img/avatar-3.jpg" alt="..." class="img-fluid" />
+                  <img
+                    src="{{ url_for('static', filename='profile_pics/' + liked_post[2].author.profile_image) }}"
+                    alt="..."
+                    class="img-fluid"
+                  />
                 </div>
-                <div class="title"><span>John Doe</span></div></a
+                <div class="title">
+                  <span>{{liked_post[2].author.username}}</span>
+                </div></a
               >
-              <div class="date"><i class="icon-clock"></i> 2 months ago</div>
-              <div class="comments"><i class="icon-comment"></i>12</div>
+              <div class="date">
+                <i class="icon-clock"></i>
+                {{liked_post[2].author.date_joined.strftime('%d %b, %Y')}}
+              </div>
             </footer>
           </div>
         </div>
       </div>
       <div class="widImage">
         <img
-          src="{{ url_for('static', filename='blog_images/first!.jpeg') }}"
+          src="{{ url_for('static', filename='blog_images/' + liked_post[2].blog_image) }}"
           alt="..."
         />
       </div>
@@ -179,154 +170,54 @@
 <section class="latest-posts">
   <div class="container">
     <header>
-      <h2>Latest from the blog</h2>
+      <h2>
+        <a
+          href="{{url_for('blogs')}}"
+          style="text-decoration: none; color: black"
+          >Latest from the blog</a
+        >
+      </h2>
     </header>
     <div class="row">
+      {% for latest in latest_post %}
       <div class="post col-md-4">
-        <div class="post-thumbnail">
-          <a href="post.html"
-            ><img
-              src="{{ url_for('static', filename='blog_images/first!.jpeg') }}"
-              alt="..."
-              class="img-fluid"
-          /></a>
-        </div>
+        <a href="{{url_for('post', post_id=latest.id)}}"
+          ><img
+            src="{{ url_for('static', filename='blog_images/' + latest.blog_image) }}"
+            alt="..."
+            class="img-fluid"
+            style="width: 100%; height: 100%; border-radius: 10px"
+        /></a>
+
         <div class="post-details">
           <div class="post-meta d-flex justify-content-between">
-            <div class="date">20 May | 2016</div>
-            <div class="category"><a href="#">Business</a></div>
+            <div class="date">{{latest.date_posted.strftime('%d %b, %Y')}}</div>
           </div>
-          <a href="post.html">
-            <h3 class="h4">Ways to remember your important ideas</h3></a
+          <a href="{{url_for('post', post_id=latest.id)}}">
+            <h3 class="h4">{{latest.title}}</h3></a
           >
-          <p class="text-muted">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-            eiusmod tempor incididunt ut labore.
-          </p>
+          <p class="text-muted blog-content">{{ latest.content }}</p>
           <footer class="post-footer d-flex align-items-center">
             <a href="#" class="author d-flex align-items-center flex-wrap">
               <div class="avatar">
-                <img src="img/avatar-1.jpg" alt="..." class="img-fluid" />
+                <img
+                  src="{{ url_for('static', filename='profile_pics/' + latest.author.profile_image) }}"
+                  alt="..."
+                  class="img-fluid"
+                />
               </div>
-              <div class="title"><span>John Doe</span></div></a
+              <div class="title">
+                <span>{{ latest.author.username }}</span>
+              </div></a
             >
-            <div class="date"><i class="icon-clock"></i> 2 months ago</div>
-            <div class="comments"><i class="icon-comment"></i>12</div>
+            <div class="date">
+              <i class="icon-clock"></i>
+              {{latest.author.date_joined.strftime('%d %b, %Y')}}
+            </div>
           </footer>
         </div>
       </div>
-      <div class="post col-md-4">
-        <div class="post-thumbnail">
-          <a href="post.html"
-            ><img
-              src="{{ url_for('static', filename='blog_images/image1.avif') }}"
-              alt="..."
-              class="img-fluid"
-          /></a>
-        </div>
-        <div class="post-details">
-          <div class="post-meta d-flex justify-content-between">
-            <div class="date">20 May | 2016</div>
-            <div class="category"><a href="#">Technology</a></div>
-          </div>
-          <a href="post.html">
-            <h3 class="h4">Diversity in Engineering: Effect on Questions</h3></a
-          >
-          <p class="text-muted">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-            eiusmod tempor incididunt ut labore.
-          </p>
-        </div>
-      </div>
-      <div class="post col-md-4">
-        <div class="post-thumbnail">
-          <a href="post.html"
-            ><img
-              src="{{ url_for('static', filename='blog_images/image1.avif') }}"
-              alt="..."
-              class="img-fluid"
-          /></a>
-        </div>
-        <div class="post-details">
-          <div class="post-meta d-flex justify-content-between">
-            <div class="date">20 May | 2016</div>
-            <div class="category"><a href="#">Technology</a></div>
-          </div>
-          <a href="post.html">
-            <h3 class="h4">Diversity in Engineering: Effect on Questions</h3></a
-          >
-          <p class="text-muted">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-            eiusmod tempor incididunt ut labore.
-          </p>
-        </div>
-      </div>
-      <div class="post col-md-4">
-        <div class="post-thumbnail">
-          <a href="post.html"
-            ><img
-              src="{{ url_for('static', filename='blog_images/image1.avif') }}"
-              alt="..."
-              class="img-fluid"
-          /></a>
-        </div>
-        <div class="post-details">
-          <div class="post-meta d-flex justify-content-between">
-            <div class="date">20 May | 2016</div>
-            <div class="category"><a href="#">Technology</a></div>
-          </div>
-          <a href="post.html">
-            <h3 class="h4">Diversity in Engineering: Effect on Questions</h3></a
-          >
-          <p class="text-muted">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-            eiusmod tempor incididunt ut labore.
-          </p>
-        </div>
-      </div>
-      <div class="post col-md-4">
-        <div class="post-thumbnail">
-          <a href="post.html"
-            ><img
-              src="{{ url_for('static', filename='blog_images/image1.avif') }}"
-              alt="..."
-              class="img-fluid"
-          /></a>
-        </div>
-        <div class="post-details">
-          <div class="post-meta d-flex justify-content-between">
-            <div class="date">20 May | 2016</div>
-            <div class="category"><a href="#">Technology</a></div>
-          </div>
-          <a href="post.html">
-            <h3 class="h4">Diversity in Engineering: Effect on Questions</h3></a
-          >
-          <p class="text-muted">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-            eiusmod tempor incididunt ut labore.
-          </p>
-        </div>
-      </div>
-      <div class="post col-md-4">
-        <div class="post-thumbnail">
-          <a href="post.html"
-            ><img src="img/blog-3.jpg" alt="..." class="img-fluid"
-          /></a>
-        </div>
-        <div class="post-details">
-          <div class="post-meta d-flex justify-content-between">
-            <div class="date">20 May | 2016</div>
-            <div class="category"><a href="#">Financial</a></div>
-          </div>
-          <a href="post.html">
-            <h3 class="h4">Alberto Savoia Can Teach You About Interior</h3></a
-          >
-          <p class="text-muted">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-            eiusmod tempor incididunt ut labore.
-          </p>
-        </div>
-      </div>
+      {% endfor %}
     </div>
   </div>
 </section>

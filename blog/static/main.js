@@ -1,5 +1,4 @@
 const btnJoke = document.getElementById('joke');
-const btnBlogs = document.getElementById('blogs');
 const p2 = document.getElementById('quote');
 const p3 = document.getElementById('author');
 const newsTitle = document.querySelectorAll('.blog-title');
@@ -7,11 +6,6 @@ const newsDes = document.querySelectorAll('.blog-content');
 
 btnJoke.addEventListener('click', () => {
   getData();
-});
-
-btnBlogs.addEventListener('click', () => {
-  alert('clicked');
-  console.log('cliked');
 });
 
 async function getData() {
