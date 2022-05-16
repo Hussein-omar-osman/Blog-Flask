@@ -1,4 +1,4 @@
-## Pitches
+## Blogster
 
 This is a Blog flask application that can allow users to create blog posts for other users to view and comment
 
